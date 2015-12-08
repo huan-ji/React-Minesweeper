@@ -1,12 +1,12 @@
 .tile {
   float: left;
   border: 1px solid black;
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: lightgrey;
 }
 
-/*.master < div {
-  display: block;
-  width: 100%;
-}*/
 
 .master:after {
   content: "";
@@ -15,5 +15,5 @@
 }
 
 .master {
-  width: 120px;
+  width: 240px;
 }
