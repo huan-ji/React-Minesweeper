@@ -2,14 +2,13 @@ var React = require('react');
 
 var Tile = React.createClass({
   handleClick: function (e) {
-    e.preventDefault();
-    var options;
+    var flagging;
     if (e.altKey) {
-      options = "flagging";
+      flagging = true;
     } else {
-      options = "revealing";
+      flagging = false;
     }
-    this.props.update(this.props.tile, options);
+    this.props.update(this.props.tile, flagging);
   },
 
   render: function () {
@@ -17,18 +16,21 @@ var Tile = React.createClass({
     var className = "tile";
     var tileStatus = this.props.tile;
     if (tileStatus.explored) {
+      // debugger;
       if (tileStatus.bombed) {
         show = "💣";
         className += " bombed";
-      } else if (tileStatus.adjacentBombCount > 0) {
-        show = tileStatus.adjacentBombCount;
+      } else if (tileStatus.adjacentBombCount() > 0) {
+
+        show = " " + tileStatus.adjacentBombCount() + " ";
         className += " explored";
       }
     } else if (tileStatus.flagged) {
       show = "🚩";
-      className += " flagged";
+      className += " flagged unexplored";
     } else {
       show = "  ";
+      className += " unexplored";
     }
     return (
       <div className={className} onClick={this.handleClick}>{show}</div>

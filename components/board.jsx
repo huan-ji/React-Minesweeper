@@ -4,7 +4,8 @@ var Tile = require('./tile.jsx');
 var Board = React.createClass({
   render: function () {
     var self = this;
-    console.log(this.props.board);
+    
+
     return (
       <div className="master">{
           this.props.board.grid.map(function (row, rowIdx) {
